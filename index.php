@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tema 8</title>
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
     <form action="" method="post">
@@ -45,10 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     echo "Nombre: $nombre (" . strlen($nombre) . " caracteres)<br>";
     echo "Usuario: $usuario (" . strlen($usuario) . "caracteres)<br>";
-    echo "Pensamiento: $pensamiento (" . strlen($pensamiento) . "caracteres)<br>";
+    echo "Pensamiento: $pensamiento (" . strlen($pensamiento) . "caracteres)<br><br>";
 
     if(str_contains($pensamiento, "odio")){
-        echo "Su pensamiento contiene la palabra prohibida odio<br>";
+        echo "Su pensamiento contiene la palabra prohibida odio<br><br>";
     }
 
     $cadena1 = "pais";
@@ -56,21 +57,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $nuevaCadena = str_replace($cadena1, $cadena2, $pensamiento);
     echo "Original: .$pensamiento <br>";
-    echo "Modificada: .$nuevaCadena <br>";
+    echo "Modificada: .$nuevaCadena <br><br>";
 
-    echo "Cadena sin espacios: " . trim($pensamiento) . "<br>";
+    echo "Cadena sin espacios: " . trim($pensamiento) . "<br><br>";
 
     echo "Con la primera letra en mayusculas:" . ucwords($pensamiento) . "<br>";
 
 
     $array_palabras = explode(" ", $pensamiento);
     $pensamientoCifrado = implode("-STOP-", $array_palabras);
-    echo  $pensamientoCifrado . "<br>";
+    echo  $pensamientoCifrado . "<br><br>";
 
-    $fecha_raw = explode("-", $fecha);
-    echo $fecha_raw;
+    echo '<h2>Validación de la fecha:</h2> <br>';
 
-    
+    list($anio, $mes, $dia) = explode("-", $fecha);
+
+    if(checkdate($mes, $dia, $anio)){
+        echo 'La fecha es válida <br>';
+    }else{
+        echo 'Introduzca una fecha válida <br>';
+    } 
+
+    $timestamp = strtotime($fecha);
+    echo "Fecha formateada (d/m/y): " . date("d/M/Y", $timestamp) . "<br>";
+
+    $info = getdate($timestamp);
+
+    echo "Día de la semana: " . $info["weekday"] . "<br>";
+    echo "Mes: " . $info["month"] . "<br>";
+    echo "Día del mes: " . $info["mday"] . "<br>";
+    echo "Año: " . $info["year"] . "<br>";
+
+    $mi_timestamp = mktime(12, 30, 0, $mes, $dia, $anio);
+    echo "Timestamp creado con mktime: $mi_timestamp<br>";
+    echo "Formato personalizado (12:30): " . date("d/m/Y H:i:s", $mi_timestamp) . "<br>";
 
 }
 

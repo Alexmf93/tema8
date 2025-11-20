@@ -1,0 +1,121 @@
+/* Tema Matrix - negro y verde neón */
+:root{
+	--bg:#000000;
+	--matrix-green:#00ff41;
+	--panel: rgba(0,0,0,0.6);
+	--muted: #0f2a0f;
+	--glass-border: rgba(0,255,65,0.12);
+	--text: #00ff6a;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	background: #000;
+	color:var(--matrix-green);
+	font-family: 'Courier New', Courier, monospace;
+	-webkit-font-smoothing:antialiased;
+	padding:3rem 1rem;
+	background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+					  repeating-linear-gradient(90deg, rgba(0,255,65,0.02) 0 1px, transparent 1px 8px);
+}
+
+.stage{
+	max-width:900px;
+	margin:0 auto;
+	padding:2rem;
+}
+
+form{
+	background: rgba(0,0,0,0.55);
+	border:1px solid var(--glass-border);
+	border-radius:10px;
+	padding:26px;
+	box-shadow: 0 8px 30px rgba(0,0,0,0.8), 0 0 40px rgba(0,255,65,0.06) inset;
+}
+
+form div{margin-bottom:14px}
+label{
+	display:block;
+	font-weight:700;
+	color:var(--matrix-green);
+	margin-bottom:6px;
+	letter-spacing:0.8px;
+	font-size:0.82rem;
+}
+
+input[type="text"], input[type="date"], textarea{
+	width:100%;
+	padding:10px 12px;
+	background:#041204;
+	border:1px solid rgba(0,255,65,0.06);
+	color:var(--matrix-green);
+	border-radius:6px;
+	outline:none;
+	transition: box-shadow .12s ease, transform .08s ease;
+}
+
+input[type="text"]::placeholder, textarea::placeholder{color:rgba(0,255,65,0.35)}
+
+input[type="text"]:focus, input[type="date"]:focus, textarea:focus{
+	box-shadow: 0 0 18px 3px rgba(0,255,65,0.12), 0 0 6px rgba(0,0,0,0.6) inset;
+	transform: translateY(-1px);
+	border-color: rgba(0,255,65,0.35);
+}
+
+textarea{min-height:120px; resize:vertical}
+
+input[type="submit"]{
+	display:inline-block;
+	background: linear-gradient(90deg, rgba(0,255,65,0.95), rgba(0,180,40,0.95));
+	color:#001100;
+	border:none;
+	padding:10px 18px;
+	border-radius:10px;
+	font-weight:800;
+	cursor:pointer;
+	box-shadow: 0 6px 24px rgba(0,255,65,0.08), 0 2px 8px rgba(0,0,0,0.6);
+	transition: transform .12s ease, box-shadow .12s ease;
+}
+
+input[type="submit"]:hover{transform:translateY(-3px); box-shadow: 0 14px 40px rgba(0,255,65,0.12)}
+
+h2{color:var(--matrix-green); margin-top:1.6rem; letter-spacing:1px}
+
+.results{
+	margin-top:1rem;
+	padding:12px;
+	border-radius:6px;
+	background: rgba(0,0,0,0.45);
+	border:1px solid rgba(0,255,65,0.06);
+}
+
+/* Highlight the forbidden word 'odio' in results */
+.forbidden{color:#ff6b6b; font-weight:700; background: rgba(255,107,107,0.04); padding:2px 6px; border-radius:4px}
+
+/* subtle scanline animation */
+@keyframes scanline{ from{background-position:0 0} to{background-position:0 200px} }
+body::after{
+	content:'';
+	position:fixed; inset:0; pointer-events:none;
+	background-image: linear-gradient(180deg, rgba(0,255,65,0.015) 0 1px, transparent 1px 3px);
+	mix-blend-mode:screen;
+	opacity:0.45;
+	animation: scanline 6s linear infinite;
+}
+
+/* responsive */
+@media (max-width:520px){
+	body{padding:1.2rem}
+	form{padding:18px}
+}
+
+/* Utility class: center form */
+.centered{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	min-height:80vh;
+}
+
